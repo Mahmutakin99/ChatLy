@@ -56,6 +56,7 @@ class LoginViewController: UIViewController {
         button.setTitle("Log In", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
         button.layer.cornerRadius = 10
         //email ve şifre girilmeden basılmaması için
         button.isEnabled = false
@@ -150,10 +151,11 @@ extension LoginViewController {
             
             stackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 32),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+            //stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+            view.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 32),
             emailContainerView.heightAnchor.constraint(equalToConstant: 50),
             
-            switchToRegisterButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 8),
+            switchToRegisterButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 10),
             switchToRegisterButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
             view.trailingAnchor.constraint(equalTo: switchToRegisterButton.trailingAnchor, constant: 32),
         
