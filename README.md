@@ -33,8 +33,8 @@ Bu uygulama, kullanıcıların e-posta ve şifre ile kayıt olup giriş yapabile
 
   <!-- 1. Register -->
   <img src="https://github.com/Mahmutakin99/ChatLy/blob/main/ChatLy/Photos/registerPage.png" width="300" alt="Kayıt Ol (Register) ekranı - Kullanıcıların yeni hesap oluşturduğu ekran." />
-  <br/><sub>Kayıt Olma (Register) Ekranı
-Bu ekran, uygulamaya yeni kullanıcıların güvenli bir şekilde kayıt olmasını sağlamaktadır. Kullanıcıdan e-posta, şifre ve diğer gerekli bilgiler alınarak sistemde bir hesap oluşturulur. Ayrıca kullanıcı adı alanında özel bir kontrol mekanizması bulunmaktadır. Bu mekanizma sayesinde, seçilen kullanıcı adı sistemde mevcut verilerle karşılaştırılır ve yalnızca size ait olacak benzersiz bir kullanıcı adı belirlemenize imkân tanır. Böylece hem güvenlik hem de kişiselleştirme açısından kullanıcı deneyimi artırılmış olur.</sub>
+  <br/><br/>Kayıt Olma (Register) Ekranı
+Bu ekran, uygulamaya yeni kullanıcıların güvenli bir şekilde kayıt olmasını sağlamaktadır. Kullanıcıdan e-posta, şifre ve diğer gerekli bilgiler alınarak sistemde bir hesap oluşturulur. Ayrıca kullanıcı adı alanında özel bir kontrol mekanizması bulunmaktadır. Bu mekanizma sayesinde, seçilen kullanıcı adı sistemde mevcut verilerle karşılaştırılır ve yalnızca size ait olacak benzersiz bir kullanıcı adı belirlemenize imkân tanır. Böylece hem güvenlik hem de kişiselleştirme açısından kullanıcı deneyimi artırılmış olur.
   <br/><br/>
 
   <!-- 2. Login -->
