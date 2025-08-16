@@ -9,6 +9,7 @@ import UIKit
 import FirebaseFirestore
 import FirebaseAuth
 import FirebaseStorage
+import JGProgressHUD
 
 class RegisterViewController: UIViewController {
     
@@ -55,13 +56,11 @@ class RegisterViewController: UIViewController {
     private let userNameTextField = CustomTextField(placeHolder: "Enter Your UserName:")
     private let passwordTextField: CustomTextField = {
        let textField = CustomTextField(placeHolder: "Enter Your Password:")
-        //şifrenin gösterilmemesi için
         textField.isSecureTextEntry = true
         return textField
     }()
     private var stackView = UIStackView()
     
-    //registerButton
     private lazy var registerButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Register", for: .normal)
@@ -88,8 +87,10 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        styl()
+        
+        style()
         layout()
+        hideKeyboardWhenTappedAround()
         
     }
 }
@@ -102,40 +103,25 @@ extension RegisterViewController{
         guard let nameText = nameTextField.text else { return }
         guard let userNameText = userNameTextField.text else { return }
         guard let passwordText = passwordTextField.text else { return }
-        guard let profilePhoto = profilePhotoToUpload else { return }
-        
-        let photoName = UUID().uuidString
-        guard let profileData = profilePhoto.jpegData(compressionQuality: 0.5) else { return }
-        let referance = Storage.storage().reference(withPath: "media/profile_image/\(photoName).png")
-        referance.putData(profileData) { storegeMeta, error in
-            if let error = error{
-                print("Error: \(error.localizedDescription)")
+        //guard let profilePhoto = profilePhotoToUpload else { return }
+        guard let profilePhoto = profilePhotoToUpload else {
+            self.showErrorAlert(title: "Error", message: "Please select a profile photo.")
+            return
+        }
+        let user = AuthenticationServiceUser(emailText: emailText, passwordText: passwordText, nameText: nameText, userNameText: userNameText)
+        self.showProgressHud(showProgress: true)
+        AuthenticationService.register(withUser: user, image: profilePhoto) { error in
+            self.showProgressHud(showProgress: false)
+            
+            if let error = error {
+                self.showErrorAlert(title: "Register Error" , message: error.localizedDescription)
+                return
             }
-            referance.downloadURL { url, error in
-                if let error = error{
-                    print("Error: \(error.localizedDescription)")
-                }
-                guard let profilePhotoUrl = url?.absoluteString else { return }
-                Auth.auth().createUser(withEmail: emailText, password: passwordText) { result, error in
-                    if let error = error {
-                        print(error.localizedDescription)
-                    }
-                    guard let userUid = result?.user.uid else { return }
-                    let data = [
-                        "email": emailText,
-                        "name": nameText,
-                        "userName": userNameText,
-                        "profilePhotoUrl": profilePhotoUrl,
-                        "uid": userUid,
-                        
-                    ] as [String: Any]
-                    Firestore.firestore().collection("users").document(userUid).setData(data) { error in
-                        if let error = error{
-                            print(error.localizedDescription)
-                        }
-                        print("Profil oluşturma işlemi başarılı")
-                    }
-                }
+            
+            self.showSuccessHud("Registration successful!")
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                self.dismiss(animated: true)
             }
         }
     }
@@ -145,9 +131,33 @@ extension RegisterViewController{
             viewModel.email = sender.text
         }else if sender == nameTextField{
             viewModel.name = sender.text
-        }else if sender == userNameTextField{
+        }/*else if sender == userNameTextField{
             viewModel.userName = sender.text
-        }else{
+        }*/
+        else if sender == userNameTextField {
+            viewModel.userName = sender.text
+            
+            // Kullanıcı adını kontrol et
+            guard let username = sender.text, username.count >= 3 else {
+                viewModel.isUsernameAvailable = false
+                registerButtonStatus()
+                return
+            }
+
+            AuthenticationService.isUsernameAvailable(username) { [weak self] isAvailable in
+                guard let self = self else { return }
+                DispatchQueue.main.async {
+                    self.viewModel.isUsernameAvailable = isAvailable
+                    self.registerButtonStatus()
+
+                    if !isAvailable {
+                        self.showErrorAlert(title: "Username Taken", message: "This username is already in use. Please try another.")
+                    }
+                }
+            }
+        }
+        
+        else{
             viewModel.password = sender.text
         }
         registerButtonStatus()
@@ -178,16 +188,28 @@ extension RegisterViewController{
         }
     }
     
-    private func styl(){
+    @objc func handleWillShowNotification(){
+        self.view.frame.origin.y = -125
+    }
+    
+    @objc func handleWillHideNotification(){
+        self.view.frame.origin.y = 0
+    }
+    
+    private func configureSetupKeyboard(){
+        NotificationCenter.default.addObserver(self, selector: #selector(handleWillShowNotification), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleWillHideNotification), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    private func style(){
         configureGradientLayer()
-        //addPhotoButton
+        configureSetupKeyboard()
+        
         addPhotoButton.translatesAutoresizingMaskIntoConstraints = false
         
-        //stackView
         stackView = UIStackView(arrangedSubviews: [emailContainerView, nameContainerView, userNameContainerView, passwordContainerView, registerButton])
         stackView.axis = .vertical
         stackView.spacing = 14
-        //stack içerisindeki elemanların hepsinin büyüklüğünü aynı yapar
         stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -207,8 +229,8 @@ extension RegisterViewController{
         
         NSLayoutConstraint.activate([
             addPhotoButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            addPhotoButton.heightAnchor.constraint(equalToConstant: 190),
-            addPhotoButton.widthAnchor.constraint(equalToConstant: 175),
+            addPhotoButton.heightAnchor.constraint(equalToConstant: 180),
+            addPhotoButton.widthAnchor.constraint(equalToConstant: 180),
             addPhotoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             stackView.topAnchor.constraint(equalTo: addPhotoButton.bottomAnchor, constant: 32),

@@ -10,6 +10,9 @@
 		883D37192E3BCFEA008F1A20 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 883D37182E3BCFEA008F1A20 /* FirebaseAuth */; };
 		883D371B2E3BCFEA008F1A20 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 883D371A2E3BCFEA008F1A20 /* FirebaseFirestore */; };
 		883D371D2E3BCFEA008F1A20 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 883D371C2E3BCFEA008F1A20 /* FirebaseStorage */; };
+		884BE4B12E439EF20017EA4E /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 884BE4B02E439EF20017EA4E /* SDWebImageMapKit */; };
+		8856306A2E42024500D0A329 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 885630692E42024500D0A329 /* SDWebImage */; };
+		887A60812E40209B0024BE48 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 887A60802E40209B0024BE48 /* JGProgressHUD */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,9 +45,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				887A60812E40209B0024BE48 /* JGProgressHUD in Frameworks */,
 				883D37192E3BCFEA008F1A20 /* FirebaseAuth in Frameworks */,
 				883D371B2E3BCFEA008F1A20 /* FirebaseFirestore in Frameworks */,
 				883D371D2E3BCFEA008F1A20 /* FirebaseStorage in Frameworks */,
+				884BE4B12E439EF20017EA4E /* SDWebImageMapKit in Frameworks */,
+				8856306A2E42024500D0A329 /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +96,9 @@
 				883D37182E3BCFEA008F1A20 /* FirebaseAuth */,
 				883D371A2E3BCFEA008F1A20 /* FirebaseFirestore */,
 				883D371C2E3BCFEA008F1A20 /* FirebaseStorage */,
+				887A60802E40209B0024BE48 /* JGProgressHUD */,
+				885630692E42024500D0A329 /* SDWebImage */,
+				884BE4B02E439EF20017EA4E /* SDWebImageMapKit */,
 			);
 			productName = ChatLy;
 			productReference = 88BF69512E3A683100A7029B /* ChatLy.app */;
@@ -121,6 +130,8 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				883D37172E3BCFEA008F1A20 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				887A607F2E40209B0024BE48 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
+				885630682E42024400D0A329 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 88BF69522E3A683100A7029B /* Products */;
@@ -360,6 +371,22 @@
 				minimumVersion = 12.0.0;
 			};
 		};
+		885630682E42024400D0A329 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.21.1;
+			};
+		};
+		887A607F2E40209B0024BE48 /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -377,6 +404,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 883D37172E3BCFEA008F1A20 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		884BE4B02E439EF20017EA4E /* SDWebImageMapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 885630682E42024400D0A329 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImageMapKit;
+		};
+		885630692E42024500D0A329 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 885630682E42024400D0A329 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		887A60802E40209B0024BE48 /* JGProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 887A607F2E40209B0024BE48 /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
+			productName = JGProgressHUD;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
