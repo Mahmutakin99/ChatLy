@@ -6,26 +6,22 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 class LoginViewController: UIViewController {
     //MARK: Properties
+
     
     private var viewModel = LoginViewModel()
     
-    // logomuzu uygulamamızın üzerinde gösterme
     private let logoImageView: UIImageView = {
         let imageView = UIImageView()
-        // görüntüyü bozmadan oranı koruyarak büyütme
         imageView.contentMode = .scaleAspectFill
-        //resmin dışına çıkan kısımları kırpar
         imageView.clipsToBounds = true
-        // oluşturduğum logoyu imageView'a ekliyorum
         imageView.image = #imageLiteral(resourceName: "appstore")
         return imageView
         
     }()
-    //emailContainerView
-    //kullanıcının email bölümünü boş bırakması halinde bu kısım için bellekte yer açılmaması için lazy var kullanıldı
     private lazy var emailContainerView: AuthenticationInputView = {
         let containerView = AuthenticationInputView(image: UIImage(systemName: "envelope")!, textField: emailTextField)
         
@@ -33,8 +29,6 @@ class LoginViewController: UIViewController {
     }()
     private let emailTextField = CustomTextField(placeHolder: "Enter Your Email:")
     
-    //passwordContainerView
-    //kullanıcının email bölümünü boş bırakması halinde bu kısım için bellekte yer açılmaması için lazy var kullanıldı
     private lazy var passwordContainerView: AuthenticationInputView = {
         let containerView = AuthenticationInputView(image: UIImage(systemName: "lock")!, textField: passwordTextField)
         
@@ -42,29 +36,25 @@ class LoginViewController: UIViewController {
     }()
     private let passwordTextField: CustomTextField = {
        let textField = CustomTextField(placeHolder: "Enter Your Password:")
-        //şifrenin gösterilmemesi için
         textField.isSecureTextEntry = true
         return textField
     }()
     
-    //stackView
     private var stackView = UIStackView()
     
-    //Login butonu
-    private let loginButton: UIButton = {
+    private lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Log In", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
         button.layer.cornerRadius = 10
-        //email ve şifre girilmeden basılmaması için
         button.isEnabled = false
+        button.addTarget(self, action: #selector(handleLoginButton), for: .touchUpInside)
         
         return button
     }()
     
-    //register sayfasına geçiş butonu
     private lazy var switchToRegisterButton: UIButton = {
         let button = UIButton(type: .system)
         let attributedTitle = NSMutableAttributedString(string: "Click To Become A Member", attributes: [.foregroundColor: UIColor.white, .font: UIFont.boldSystemFont(ofSize: 14)])
@@ -77,18 +67,37 @@ class LoginViewController: UIViewController {
     //MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        // login ekranımızın arkaplanının değiştiği fonksiyonu çağırıyoruz
+        
         configureGradientLayer()
         style()
         layout()
-        
+        hideKeyboardWhenTappedAround()
     }
-
-
 }
 
 //MARK: Selector
 extension LoginViewController {
+    
+    @objc func handleLoginButton(_ sender: UIButton){
+        guard let emailText = emailTextField.text else { return }
+        guard let passwordText = passwordTextField.text else { return }
+        
+        showProgressHud(showProgress: true)
+        
+        AuthenticationService.login(withEmail: emailText, password: passwordText) { result, error in
+            DispatchQueue.main.async {
+                self.showProgressHud(showProgress: false)
+                
+                if let error = error {
+                    self.showProgressHud(showProgress: false)
+                    self.showErrorAlert(message: error.localizedDescription)
+                    return
+                }
+                self.dismiss(animated: true)
+            }
+        }
+    }
+    
     @objc private func handleTextFieldChange(_ sender: UITextField){
         if sender == emailTextField{
             viewModel.emailTextField = sender.text
@@ -105,7 +114,14 @@ extension LoginViewController {
 
 //MARK: Helpers
 extension LoginViewController {
+
     
+    private func showErrorAlert(message: String) {
+        let alert = UIAlertController(title: "Login Failed", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
+
     private func loginButtonStatus(){
         if viewModel.status{
             loginButton.isEnabled = true
@@ -117,32 +133,22 @@ extension LoginViewController {
     }
     
     private func style(){
-        //logoImageView
-        //otomatik düzenlemeyi kapatır
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        //emailContainerView
-        //otomatik düzenlemeyi kapatır
         emailContainerView.translatesAutoresizingMaskIntoConstraints = false
-        //stackView
         stackView = UIStackView(arrangedSubviews: [emailContainerView, passwordContainerView, loginButton])
         stackView.axis = .vertical
         stackView.spacing = 14
-        //stack içerisindeki elemanların hepsinin büyüklüğünü aynı yapar
         stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        //email/passwordTextFiel
         emailTextField.addTarget(self, action: #selector(handleTextFieldChange), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(handleTextFieldChange), for: .editingChanged)
-        //switchToRegisterButton
         switchToRegisterButton.translatesAutoresizingMaskIntoConstraints = false
     }
     private func layout(){
-        //logoImageView'ı, emailContainerView'ı view'a ekliyoruz
         view.addSubview(logoImageView)
         view.addSubview(stackView)
         view.addSubview(switchToRegisterButton)
         
-        //logomuzun ve email bölümünün ekrandaki konumunu ayarlıyoruz
         NSLayoutConstraint.activate([
             logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             logoImageView.heightAnchor.constraint(equalToConstant: 190),

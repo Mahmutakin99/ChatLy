@@ -11,7 +11,9 @@ struct RegisterViewModel{
     var userName: String?
     var password: String?
     
+    var isUsernameAvailable: Bool = false
+    
     var status: Bool{
-        return email?.isEmpty == false && name?.isEmpty == false && userName?.isEmpty == false && password?.isEmpty == false
+        return email?.isEmpty == false && name?.isEmpty == false && userName?.isEmpty == false && password?.isEmpty == false && isUsernameAvailable
     }
 }

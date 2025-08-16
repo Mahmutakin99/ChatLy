@@ -50,9 +50,7 @@ class NewMessageCell: UICollectionViewCell {
         style()
         layout()
         
-        
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -61,9 +59,7 @@ class NewMessageCell: UICollectionViewCell {
 // MARK: Helpers
 extension NewMessageCell {
     
-    
     private func style(){
-        
         profilePhotoView.translatesAutoresizingMaskIntoConstraints = false
         profilePhotoView.layer.cornerRadius = 50 / 2
         messageContainerView.translatesAutoresizingMaskIntoConstraints = false
@@ -76,18 +72,15 @@ extension NewMessageCell {
         addSubview(messageTextView)
         
         NSLayoutConstraint.activate([
-            //profilePhotoView
             profilePhotoView.widthAnchor.constraint(equalToConstant: 50),
             profilePhotoView.heightAnchor.constraint(equalToConstant: 50),
             bottomAnchor.constraint(equalTo: profilePhotoView.bottomAnchor,constant: 5),
             profilePhotoView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 4),
             
-            //messageContainerView
             messageContainerView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             messageContainerView.bottomAnchor.constraint(equalTo: bottomAnchor),
             messageContainerView.widthAnchor.constraint(lessThanOrEqualToConstant: 300),
             
-            //messageTextView
             messageTextView.topAnchor.constraint(equalTo: messageContainerView.topAnchor),
             messageTextView.leadingAnchor.constraint(equalTo: messageContainerView.leadingAnchor),
             messageTextView.trailingAnchor.constraint(equalTo: messageContainerView.trailingAnchor),
@@ -113,7 +106,6 @@ extension NewMessageCell {
         profilePhotoView.sd_setImage(with: viewModel.profilePhotoView)
         
     }
-    
 }
 
 

@@ -11,20 +11,41 @@ import FirebaseCore
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    // programımızın pencere oluşturuyoruz
     var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow()
-        // giriş sayfası olarak hangi controller sayfasını seçeceğimizi belirliyoruz
-        window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
-        //pencereyi aktif ve görünür hale getirme
+        window?.rootViewController = configureNavigationController(rootViewController: HomeViewController())
         window?.makeKeyAndVisible()
         FirebaseApp.configure()
         
         return true
     }
 
+    private func configureNavigationController(rootViewController: UIViewController)->UINavigationController {
+        let gradient = CAGradientLayer()
+        gradient.colors = [UIColor.systemPurple.cgColor, UIColor.systemBlue.withAlphaComponent(0.7).cgColor]
+        gradient.frame = .init(x: 0, y: 0, width: UIScreen.main.bounds.height * 2, height: 64)
+        let controller = UINavigationController(rootViewController: rootViewController)
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithDefaultBackground()
+        appearance.backgroundImage = self.image(fromLayer: gradient)
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.preferredFont(forTextStyle: .title2)]
+        controller.navigationBar.standardAppearance = appearance
+        controller.navigationBar.compactAppearance = appearance
+        controller.navigationBar.scrollEdgeAppearance = appearance
+        controller.navigationBar.compactScrollEdgeAppearance = appearance
+        
+        return controller
+    }
     
+    func image(fromLayer layer: CALayer) -> UIImage{
+        UIGraphicsBeginImageContext(layer.frame.size)
+        layer.render(in: UIGraphicsGetCurrentContext()!)
+        let outputImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return outputImage!
+        
+    }
 
 
 }
