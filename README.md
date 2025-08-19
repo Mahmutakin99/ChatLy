@@ -56,7 +56,7 @@ deneyimi yaşayabilir. Uygulama <b>MVVM mimarisi</b> ile geliştirildi ve
     ➡️ Hata durumlarında <code>showAlert</code> ile kullanıcıya yönlendirici mesajlar.
   </p>
 </div>
-
+<br><br>
 <div class="section">
   <img src="https://github.com/Mahmutakin99/ChatLy/blob/main/ChatLy/Photos/messagePage.png" width="260" />
   <p>
@@ -65,7 +65,7 @@ deneyimi yaşayabilir. Uygulama <b>MVVM mimarisi</b> ile geliştirildi ve
     ➡️ Kullanıcı seçilerek sohbet başlatılabilir.
   </p>
 </div>
-
+<br><br>
 <div class="section">
   <img src="https://github.com/Mahmutakin99/ChatLy/blob/main/ChatLy/Photos/lastMessage.png" width="260" />
   <p>
@@ -74,7 +74,7 @@ deneyimi yaşayabilir. Uygulama <b>MVVM mimarisi</b> ile geliştirildi ve
     ➡️ Son mesajlar özet halinde gösterilir.
   </p>
 </div>
-
+<br><br>
 <div class="section">
   <img src="https://github.com/Mahmutakin99/ChatLy/blob/main/ChatLy/Photos/messagingScreen.PNG" width="260" />
   <p>
@@ -83,7 +83,7 @@ deneyimi yaşayabilir. Uygulama <b>MVVM mimarisi</b> ile geliştirildi ve
     ➡️ Mesajlar baloncuk yapısıyla gönderilen/alınan olarak ayrılır.
   </p>
 </div>
-
+<br><br>
 <div class="section">
   <img src="https://github.com/Mahmutakin99/ChatLy/blob/main/ChatLy/Photos/profilePage.png" width="260" />
   <p>
@@ -113,16 +113,9 @@ ChatLy
   <li>Bağımlılıkları yükle:
     <pre>pod install</pre>
     veya Swift Package Manager üzerinden gerekli Firebase paketlerini ekle.
-  </li>
+  </li><br>
   <li>Xcode’da projeyi aç ve çalıştır 🚀</li>
 </ol>
-
-<h2>📌 Yol Haritası</h2>
-<ul>
-  <li>🔜 Grup sohbetleri</li>
-  <li>🔜 Mesajlara medya (fotoğraf/video) ekleme</li>
-  <li>🔜 Push bildirimleri</li>
-</ul>
 
 <h2>🤝 Katkı</h2>
 <p>
