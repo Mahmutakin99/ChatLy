@@ -46,7 +46,7 @@ deneyimi yaşayabilir. Uygulama <b>MVVM mimarisi</b> ile geliştirildi ve
     ➡️ Yanlış girişlerde anlamlı hata mesajları gösterilir.
   </p>
 </div>
-
+<br><br>
 <div class="section">
   <img src="https://github.com/Mahmutakin99/ChatLy/blob/main/ChatLy/Photos/registrationProcess.png" width="260" />
   <img src="https://github.com/Mahmutakin99/ChatLy/blob/main/ChatLy/Photos/ShowAllert.PNG" width="260" />
