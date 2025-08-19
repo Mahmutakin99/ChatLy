@@ -4,40 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>ChatLy – Swift + Firebase Mesajlaşma Uygulaması</title>
-<style>
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    background: #0f172a;
-    color: #e2e8f0;
-    line-height: 1.6;
-    margin: 0;
-    padding: 20px;
-  }
-  h1, h2, h3 {
-    color: #38bdf8;
-  }
-  .section {
-    margin-bottom: 50px;
-    text-align: center;
-  }
-  .section img {
-    display: block;
-    margin: 0 auto 15px auto;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-  }
-  .section p {
-    max-width: 700px;
-    margin: 0 auto;
-    text-align: left;
-  }
-  code {
-    background: #1e293b;
-    padding: 2px 6px;
-    border-radius: 6px;
-  }
-</style>
+
 </head>
 <body>
 
