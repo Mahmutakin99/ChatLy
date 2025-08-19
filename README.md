@@ -24,7 +24,7 @@ Kullanıcılar e-posta ve şifreyle kayıt/giriş yapabilir, gerçek zamanlı bi
 
 <br><br>
 📸 Uygulama Ekran Görüntüleri
-<div>
+<div align="center">
 🔐 Kayıt & Giriş
 <img src="https://github.com/Mahmutakin99/ChatLy/blob/main/ChatLy/Photos/registerPage.png" width="260" /> <img src="https://github.com/Mahmutakin99/ChatLy/blob/main/ChatLy/Photos/loginPage.png" width="260" /><br>
 
@@ -70,14 +70,14 @@ Kullanıcılar e-posta ve şifreyle kayıt/giriş yapabilir, gerçek zamanlı bi
 </div>
 
 <br><br>
-📂 Proje Yapısı (MVVM)
-ChatLy
- ┣ Models/         # Veri modelleri
- ┣ Views/          # Programatik UIKit görünümleri
- ┣ ViewModels/     # İş mantığı & veri bağlama
- ┣ Controllers/    # ViewController katmanı
- ┣ Services/       # Firebase servisleri (Auth, Firestore, Storage)
- ┗ Utils/          # Yardımcı fonksiyonlar (alert, loader vs.)
+📂 Proje Yapısı (MVVM)<br>
+ChatLy<br>
+ ┣ Models/         # Veri modelleri<br>
+ ┣ Views/          # Programatik UIKit görünümleri<br>
+ ┣ ViewModels/     # İş mantığı & veri bağlama<br>
+ ┣ Controllers/    # ViewController katmanı<br>
+ ┣ Services/       # Firebase servisleri (Auth, Firestore, Storage)<br>
+ ┗ Utils/          # Yardımcı fonksiyonlar (alert, loader vs.)<br>
 
 <br><br>
 🔧 Kurulum
@@ -86,10 +86,11 @@ ChatLy
   git clone https://github.com/Mahmutakin99/ChatLy.git
 <br>
 2. Firebase projesi oluştur ve GoogleService-Info.plist dosyasını projeye ekle.
-<br>
+<br><br>
 3.Bağımlılıkları yükle (CocoaPods kullanıyorsan):<br>
   pod install<br>
-  (veya Swift Package Manager üzerinden gerekli Firebase paketlerini ekle.)
+veya Swift Package Manager üzerinden gerekli Firebase paketlerini ekle.
+<br>
 
 4. Xcode’da projeyi aç ve çalıştır 🚀
 
