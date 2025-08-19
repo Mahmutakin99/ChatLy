@@ -38,7 +38,7 @@ class ChatInputView: UIView {
     
     private let placeHolderLabel: UILabel = {
         let label = UILabel()
-        label.text = "Enter Your Message:"
+        label.text = "Mesajınızı giriniz:"
         label.alpha = 0.5
         return label
     }()

@@ -27,7 +27,7 @@ class LoginViewController: UIViewController {
         
         return containerView
     }()
-    private let emailTextField = CustomTextField(placeHolder: "Enter Your Email:")
+    private let emailTextField = CustomTextField(placeHolder: "Email giriniz:")
     
     private lazy var passwordContainerView: AuthenticationInputView = {
         let containerView = AuthenticationInputView(image: UIImage(systemName: "lock")!, textField: passwordTextField)
@@ -35,7 +35,7 @@ class LoginViewController: UIViewController {
         return containerView
     }()
     private let passwordTextField: CustomTextField = {
-       let textField = CustomTextField(placeHolder: "Enter Your Password:")
+       let textField = CustomTextField(placeHolder: "Şifrenizi giriniz:")
         textField.isSecureTextEntry = true
         return textField
     }()
@@ -44,7 +44,7 @@ class LoginViewController: UIViewController {
     
     private lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Log In", for: .normal)
+        button.setTitle("Giriş yap", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
@@ -57,7 +57,7 @@ class LoginViewController: UIViewController {
     
     private lazy var switchToRegisterButton: UIButton = {
         let button = UIButton(type: .system)
-        let attributedTitle = NSMutableAttributedString(string: "Click To Become A Member", attributes: [.foregroundColor: UIColor.white, .font: UIFont.boldSystemFont(ofSize: 14)])
+        let attributedTitle = NSMutableAttributedString(string: "Üye Olmak İçin Tıklayın", attributes: [.foregroundColor: UIColor.white, .font: UIFont.boldSystemFont(ofSize: 14)])
         button.setAttributedTitle(attributedTitle, for: .normal)
         button.addTarget(self, action: #selector(handleGoToRegisterPage), for: .touchUpInside)
         

@@ -22,7 +22,6 @@ extension UIViewController {
             view.endEditing(true)
         }
     
-    // arkaplan rengi
     func configureGradientLayer() {
         let gradient = CAGradientLayer()
         gradient.locations = [0,1]
@@ -51,7 +50,7 @@ extension UIViewController {
         }
 
         func showProgressHud(showProgress: Bool){
-            progressHud.textLabel.text = "Please Wait..."
+            progressHud.textLabel.text = "Lütfen Bekleyiniz..."
             if showProgress {
                 progressHud.show(in: view)
             } else {

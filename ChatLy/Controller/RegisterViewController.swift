@@ -51,11 +51,11 @@ class RegisterViewController: UIViewController {
         return containerView
     }()
     
-    private let emailTextField = CustomTextField(placeHolder: "Enter Your Email:")
-    private let nameTextField = CustomTextField(placeHolder: "Enter Your Name:")
-    private let userNameTextField = CustomTextField(placeHolder: "Enter Your UserName:")
+    private let emailTextField = CustomTextField(placeHolder: "Email Giriniz:")
+    private let nameTextField = CustomTextField(placeHolder: "Adınızı Giriniz:")
+    private let userNameTextField = CustomTextField(placeHolder: "Kullanıcı Adı Giriniz:")
     private let passwordTextField: CustomTextField = {
-       let textField = CustomTextField(placeHolder: "Enter Your Password:")
+       let textField = CustomTextField(placeHolder: "Şifre Giriniz:")
         textField.isSecureTextEntry = true
         return textField
     }()
@@ -68,7 +68,6 @@ class RegisterViewController: UIViewController {
         button.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
         button.layer.cornerRadius = 10
-        //email ve şifre girilmeden basılmaması için
         button.isEnabled = false
         button.addTarget(self, action: #selector(handleRegisterButton), for: .touchUpInside)
         
@@ -76,7 +75,7 @@ class RegisterViewController: UIViewController {
     }()
     private lazy var switchToLoginPageButton: UIButton = {
         let button = UIButton(type: .system)
-        let attributedTitle = NSMutableAttributedString(string: "If You Are A Member, Login Page", attributes: [.foregroundColor: UIColor.white, .font: UIFont.boldSystemFont(ofSize: 14)])
+        let attributedTitle = NSMutableAttributedString(string: "Üye misiniz? (Giriş Sayfasına Git)", attributes: [.foregroundColor: UIColor.white, .font: UIFont.boldSystemFont(ofSize: 14)])
         button.setAttributedTitle(attributedTitle, for: .normal)
         button.addTarget(self, action: #selector(handleGoToLoginPage), for: .touchUpInside)
         
@@ -137,7 +136,6 @@ extension RegisterViewController{
         else if sender == userNameTextField {
             viewModel.userName = sender.text
             
-            // Kullanıcı adını kontrol et
             guard let username = sender.text, username.count >= 3 else {
                 viewModel.isUsernameAvailable = false
                 registerButtonStatus()

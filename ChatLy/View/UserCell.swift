@@ -93,7 +93,7 @@ extension UserCell {
     private func configureUserCell(){
         guard let user = user else { return }
         if user.uid == Auth.auth().currentUser?.uid {
-            self.title.text = "\(user.name) (you)"
+            self.title.text = "\(user.name) (siz)"
         } else {
             self.title.text = user.name
         }

@@ -25,8 +25,8 @@ struct AuthenticationService{
     static func isUsernameAvailable(_ username: String, completion: @escaping (Bool) -> Void) {
         let query = Firestore.firestore().collection("users").whereField("userName", isEqualTo: username)
         query.getDocuments { snapshot, error in
-            if let error = error {
-                print("DEBUG: Failed to check username availability \(error.localizedDescription)")
+            if error != nil {
+                //print("DEBUG: Failed to check username availability \(error.localizedDescription)")
                 completion(false)
                 return
             }

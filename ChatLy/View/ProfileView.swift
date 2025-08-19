@@ -42,7 +42,7 @@ class ProfileView: UIView {
     }()
     private lazy var signOutButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("SignOut", for: .normal)
+        button.setTitle("Çıkış", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.layer.cornerRadius = 10
         button.backgroundColor = .systemRed
@@ -100,8 +100,8 @@ extension ProfileView {
     }
     private func configure(){
         guard let user = self.user else { return }
-        self.nameLabel.attributedText = attributedTitle(headerTitle: "Name", title: "\(user.name)")
-        self.userNameLabel.attributedText = attributedTitle(headerTitle: "UserName", title: "\(user.userName)")
+        self.nameLabel.attributedText = attributedTitle(headerTitle: "Ad", title: "\(user.name)")
+        self.userNameLabel.attributedText = attributedTitle(headerTitle: "Kullanıcı Adı", title: "\(user.userName)")
         self.profilePhotoView.sd_setImage(with: URL(string: user.profilePhotoUrl))
     }
 }

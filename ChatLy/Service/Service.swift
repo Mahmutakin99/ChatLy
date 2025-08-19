@@ -14,8 +14,8 @@ struct Service {
         
         var users = [User]()
         Firestore.firestore().collection("users").getDocuments { snapshot, error in
-            if let error = error{
-                print("Error: \(error.localizedDescription)")
+            if error != nil{
+                //print("Error: \(error.localizedDescription)")
                 //self.showErrorAlert(message: error.localizedDescription)
             }
             users = snapshot?.documents.map({ User(data: $0.data())}) ?? []
@@ -79,8 +79,8 @@ struct Service {
         let query = Firestore.firestore().collection("messages").document(currentUid).collection(user.uid).order(by: "timestamp")
         
         let listener = query.addSnapshotListener { snapshot, error in
-            if let error = error {
-                print("Error: \(error.localizedDescription)")
+            if error != nil {
+                //print("Error: \(error.localizedDescription)")
                 return
             }
             
