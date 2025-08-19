@@ -12,7 +12,7 @@ Kullanıcılar e-posta ve şifreyle kayıt/giriş yapabilir, gerçek zamanlı bi
 🧩 MVVM mimarisi ile temiz kod yapısı
 📱 Storyboard’suz, tamamen programatik UIKit arayüz
 
-<br><br>
+<br>
 🛠 Kullanılan Teknolojiler
 | Katman  | Teknoloji                                             |
 | ------- | ----------------------------------------------------- |
