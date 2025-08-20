@@ -1,10 +1,3 @@
-//
-//  Extension.swift
-//  ChatLy
-//
-//  Created by MAHMUT AKIN on 30/07/2025.
-//
-
 import UIKit
 import JGProgressHUD
 
@@ -12,14 +5,20 @@ private var progressHudKey: UInt8 = 0
 
 extension UIViewController {
     
+    func hideKeyboardWhenTappedAroundTable() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
     func hideKeyboardWhenTappedAround() {
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideDismissKeyboard))
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
             view.addGestureRecognizer(tapGesture)
             
-        }
-
-        @objc private func hideDismissKeyboard() {
-            view.endEditing(true)
         }
     
     func configureGradientLayer() {
@@ -33,7 +32,7 @@ extension UIViewController {
     
     func showErrorAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        alert.addAction(UIAlertAction(title: "Tamam", style: .default))
         present(alert, animated: true)
     }
     

@@ -1,10 +1,3 @@
-//
-//  RegisterViewModel.swift
-//  ChatLy
-//
-//  Created by MAHMUT AKIN on 31/07/2025.
-//
-
 struct RegisterViewModel{
     var email: String?
     var name: String?

@@ -1,16 +1,10 @@
-//
-//  ProfileView.swift
-//  ChatLy
-//
-//  Created by MAHMUT AKIN on 09/08/2025.
-//
-
 import UIKit
 import FirebaseAuth
 import SDWebImage
 
 protocol ProfileViewProtocol: AnyObject {
     func signOutProfile()
+    func editProfileTapped()
 }
 
 class ProfileView: UIView {
@@ -52,6 +46,17 @@ class ProfileView: UIView {
         return button
         
     }()
+    private lazy var editProfileButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Profili Düzenle", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.layer.cornerRadius = 10
+        button.backgroundColor = .systemGreen
+        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title3)
+        button.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        button.addTarget(self, action: #selector(handleEditProfileButton), for: .touchUpInside)
+        return button
+    }()
     private lazy var stackView = UIStackView()
     // MARK: LifeCycle
     override init(frame: CGRect) {
@@ -71,7 +76,7 @@ extension ProfileView {
         profilePhotoView.translatesAutoresizingMaskIntoConstraints = false
         profilePhotoView.layer.cornerRadius = 120 / 2
         
-        stackView = UIStackView(arrangedSubviews: [nameLabel, userNameLabel, signOutButton])
+        stackView = UIStackView(arrangedSubviews: [nameLabel, userNameLabel, editProfileButton, signOutButton])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
@@ -109,5 +114,8 @@ extension ProfileView {
 extension ProfileView{
     @objc func handleSignOutButton(_ sender: UIButton){
         delegate?.signOutProfile()
+    }
+    @objc func handleEditProfileButton(_ sender: UIButton){
+        delegate?.editProfileTapped()
     }
 }

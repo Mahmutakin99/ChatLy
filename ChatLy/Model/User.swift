@@ -1,10 +1,3 @@
-//
-//  User.swift
-//  ChatLy
-//
-//  Created by MAHMUT AKIN on 05/08/2025.
-//
-
 struct User {
     let email: String
     let name: String

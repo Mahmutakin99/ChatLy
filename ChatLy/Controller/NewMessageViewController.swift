@@ -1,10 +1,3 @@
-//
-//  NewMessageViewController.swift
-//  ChatLy
-//
-//  Created by MAHMUT AKIN on 04/08/2025.
-//
-
 import UIKit
 
 private let reuseIdentifier = "UserCell"
@@ -62,16 +55,6 @@ extension NewMessageViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
-    }
-    
-    func hideKeyboardWhenTappedAroundTable() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
     }
 }
 

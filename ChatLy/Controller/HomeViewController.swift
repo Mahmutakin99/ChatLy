@@ -1,10 +1,3 @@
-//
-//  HomeViewController.swift
-//  ChatLy
-//
-//  Created by MAHMUT AKIN on 04/08/2025.
-//
-
 import UIKit
 import FirebaseAuth
 
@@ -43,12 +36,6 @@ class HomeViewController: UIViewController {
 
 //MARK: Helpers
 extension HomeViewController {
-    
-    func hideKeyboardWhenTappedAroundTable() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
     
     private func fetchUser() {
         guard let uid = Auth.auth().currentUser?.uid else {
@@ -113,7 +100,6 @@ extension HomeViewController {
         profileView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
         profileView.delegate = self
         
-        //container
         configureContainer()
         handleMessageButton()
     }
@@ -149,7 +135,7 @@ extension HomeViewController {
         navigationController.pushViewController(controller, animated: true)
     }
 
-    // profil panelini kapatır
+    
     private func closeProfileView(animated: Bool) {
         let action = { self.profileView.frame.origin.x = self.view.frame.width }
         if animated {
@@ -160,8 +146,13 @@ extension HomeViewController {
         self.isProfileViewActive = false
     }
     
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
+    private func showEditProfile(user: User) {
+        let editProfileVC = EditProfileViewController(user: user)
+        editProfileVC.delegate = self
+        editProfileVC.modalPresentationStyle = .overFullScreen
+        self.present(editProfileVC, animated: false) { [weak editProfileVC] in
+            editProfileVC?.animateIn()
+        }
     }
 }
 
@@ -228,5 +219,22 @@ extension HomeViewController: MessageViewControllerProtocol {
 extension HomeViewController: ProfileViewProtocol {
     func signOutProfile() {
         self.signOut()
+    }
+    
+    func editProfileTapped() {
+        if let user = profileView.user {
+            showEditProfile(user: user)
+        }
+    }
+}
+
+// MARK: EditProfileViewControllerDelegate
+extension HomeViewController: EditProfileViewControllerDelegate {
+    func editProfileViewControllerDidDismiss(_ controller: EditProfileViewController) {
+    }
+    
+    func editProfileViewControllerDidUpdateProfile(_ controller: EditProfileViewController) {
+        fetchUser()
+        closeProfileView(animated: true)
     }
 }

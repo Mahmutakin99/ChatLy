@@ -1,10 +1,3 @@
-//
-//  RegisterViewController.swift
-//  ChatLy
-//
-//  Created by MAHMUT AKIN on 31/07/2025.
-//
-
 import UIKit
 import FirebaseFirestore
 import FirebaseAuth
@@ -63,7 +56,7 @@ class RegisterViewController: UIViewController {
     
     private lazy var registerButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Register", for: .normal)
+        button.setTitle("Kayıt Ol", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
@@ -75,7 +68,7 @@ class RegisterViewController: UIViewController {
     }()
     private lazy var switchToLoginPageButton: UIButton = {
         let button = UIButton(type: .system)
-        let attributedTitle = NSMutableAttributedString(string: "Üye misiniz? (Giriş Sayfasına Git)", attributes: [.foregroundColor: UIColor.white, .font: UIFont.boldSystemFont(ofSize: 14)])
+        let attributedTitle = NSMutableAttributedString(string: "Üye misiniz? (Giriş Yap Sayfasına Git)", attributes: [.foregroundColor: UIColor.white, .font: UIFont.boldSystemFont(ofSize: 14)])
         button.setAttributedTitle(attributedTitle, for: .normal)
         button.addTarget(self, action: #selector(handleGoToLoginPage), for: .touchUpInside)
         
@@ -104,7 +97,7 @@ extension RegisterViewController{
         guard let passwordText = passwordTextField.text else { return }
         //guard let profilePhoto = profilePhotoToUpload else { return }
         guard let profilePhoto = profilePhotoToUpload else {
-            self.showErrorAlert(title: "Error", message: "Please select a profile photo.")
+            self.showErrorAlert(title: "Hata", message: "Lütfen bir profil fotoğrafı seçiniz.")
             return
         }
         let user = AuthenticationServiceUser(emailText: emailText, passwordText: passwordText, nameText: nameText, userNameText: userNameText)
@@ -113,11 +106,11 @@ extension RegisterViewController{
             self.showProgressHud(showProgress: false)
             
             if let error = error {
-                self.showErrorAlert(title: "Register Error" , message: error.localizedDescription)
+                self.showErrorAlert(title: "Kayıt Hatası" , message: error.localizedDescription)
                 return
             }
             
-            self.showSuccessHud("Registration successful!")
+            self.showSuccessHud("Kayıt Başarılı!")
 
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 self.dismiss(animated: true)
@@ -149,7 +142,7 @@ extension RegisterViewController{
                     self.registerButtonStatus()
 
                     if !isAvailable {
-                        self.showErrorAlert(title: "Username Taken", message: "This username is already in use. Please try another.")
+                        self.showErrorAlert(title: "Kullanıcı Adı Kullanımda", message: "Bu kullanıcı adı başka bir kullanıcı tarafından kullanılıyor, lütfen başka bir tane deneyinizi.")
                     }
                 }
             }
@@ -216,7 +209,6 @@ extension RegisterViewController{
         userNameTextField.addTarget(self, action: #selector(handleTextFieldChange), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(handleTextFieldChange), for: .editingChanged)
         
-        //switchToLoginPage
         switchToLoginPageButton.translatesAutoresizingMaskIntoConstraints = false
         
     }

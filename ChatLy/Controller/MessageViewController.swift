@@ -1,10 +1,3 @@
-//
-//  MessageViewController.swift
-//  ChatLy
-//
-//  Created by MAHMUT AKIN on 04/08/2025.
-//
-
 import UIKit
 import FirebaseFirestore
 
@@ -73,16 +66,6 @@ extension MessageViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
-    
-    func hideKeyboardWhenTappedAroundTable() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
 }
 
 // MARK: UITableViewDelegate, UITableViewDataSource
@@ -95,7 +78,7 @@ extension MessageViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! MessageCell
         cell.lastUser = lastUsers[indexPath.row]
         cell.backgroundColor = .systemGreen.withAlphaComponent(0.7)
-        cell.selectionStyle = .default // Hücre seçim stilini varsayılan yap
+        cell.selectionStyle = .default
         return cell
     }
     

@@ -1,10 +1,3 @@
-//
-//  MessageCell.swift
-//  ChatLy
-//
-//  Created by MAHMUT AKIN on 05/08/2025.
-//
-
 import UIKit
 import SDWebImage
 
@@ -38,7 +31,7 @@ class NewMessageCell: UICollectionViewCell {
         textView.textColor = .white
         textView.isScrollEnabled = false
         textView.isEditable = false
-        textView.text = "Message"
+        textView.text = "Mesaj"
         textView.font = UIFont.preferredFont(forTextStyle: .title3)
         return textView
     }()

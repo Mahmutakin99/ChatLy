@@ -1,10 +1,3 @@
-//
-//  Service.swift
-//  ChatLy
-//
-//  Created by MAHMUT AKIN on 05/08/2025.
-//
-
 import FirebaseFirestore
 import FirebaseAuth
 

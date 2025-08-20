@@ -1,10 +1,3 @@
-//
-//  MessageViewModel.swift
-//  ChatLy
-//
-//  Created by MAHMUT AKIN on 06/08/2025.
-//
-
 import Foundation
 
 struct MessageViewModel {

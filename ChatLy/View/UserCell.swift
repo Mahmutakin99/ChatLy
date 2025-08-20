@@ -1,10 +1,3 @@
-//
-//  UserCell.swift
-//  ChatLy
-//
-//  Created by MAHMUT AKIN on 05/08/2025.
-//
-
 import UIKit
 import SDWebImage
 import FirebaseAuth

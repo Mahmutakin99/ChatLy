@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  ChatLy
-//
-//  Created by MAHMUT AKIN on 30/07/2025.
-//
-
 import UIKit
 import JGProgressHUD
 
@@ -117,8 +110,8 @@ extension LoginViewController {
 
     
     private func showErrorAlert(message: String) {
-        let alert = UIAlertController(title: "Login Failed", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        let alert = UIAlertController(title: "Giriş Hatası", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Tamam", style: .default))
         present(alert, animated: true)
     }
 

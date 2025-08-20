@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  ChatLy
-//
-//  Created by MAHMUT AKIN on 30/07/2025.
-//
-
 import UIKit
 import FirebaseCore
 

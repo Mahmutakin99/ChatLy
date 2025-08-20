@@ -1,9 +1,3 @@
-//
-//  AuthenticationService.swift
-//  ChatLy
-//
-//  Created by MAHMUT AKIN on 04/08/2025.
-//
 import UIKit
 import FirebaseAuth
 import FirebaseStorage
@@ -74,4 +68,53 @@ struct AuthenticationService{
             }
         }
     }
+    
+    static func updateUserProfile(name: String, userName: String, profileImage: UIImage?, completion: @escaping(Error?) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            completion(NSError(domain: "AuthService", code: -1, userInfo: [NSLocalizedDescriptionKey: "No authenticated user"]))
+            return
+        }
+        
+        var updateData: [String: Any] = [
+            "name": name,
+            "userName": userName
+        ]
+        
+        if let image = profileImage {
+            let photoName = UUID().uuidString
+            guard let profileData = image.jpegData(compressionQuality: 0.5) else {
+                completion(NSError(domain: "AuthService", code: -1, userInfo: [NSLocalizedDescriptionKey: "Failed to process image"]))
+                return
+            }
+            
+            let reference = Storage.storage().reference(withPath: "media/profile_image/\(photoName).png")
+            reference.putData(profileData) { storageMeta, error in
+                if let error = error {
+                    completion(error)
+                    return
+                }
+                
+                reference.downloadURL { url, error in
+                    if let error = error {
+                        completion(error)
+                        return
+                    }
+                    
+                    if let profilePhotoUrl = url?.absoluteString {
+                        updateData["profilePhotoUrl"] = profilePhotoUrl
+                    }
+                    
+                    Firestore.firestore().collection("users").document(uid).updateData(updateData, completion: completion)
+                }
+            }
+        } else {
+            Firestore.firestore().collection("users").document(uid).updateData(updateData, completion: completion)
+        }
+    }
+    
+    // Update user password
+    static func updatePassword(newPassword: String, completion: @escaping(Error?) -> Void) {
+        Auth.auth().currentUser?.updatePassword(to: newPassword, completion: completion)
+    }
+    
 }

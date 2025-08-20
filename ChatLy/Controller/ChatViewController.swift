@@ -1,10 +1,3 @@
-//
-//  ChatViewController.swift
-//  ChatLy
-//
-//  Created by MAHMUT AKIN on 05/08/2025.
-//
-
 import UIKit
 import FirebaseFirestore
 
@@ -120,7 +113,7 @@ extension ChatViewController: ChatInputViewProtocol {
     func sendMessage(_ chatInputView: ChatInputView, message: String) {
         Service.sendMessage(message: message, toUser: user) { error in
             if let error = error {
-                print("Error: \(error.localizedDescription)")
+                print("Hata: \(error.localizedDescription)")
                 return
             }
         }
