@@ -111,7 +111,7 @@ ChatLy
   </li>
   <li>Firebase projesi oluştur ve <code>GoogleService-Info.plist</code> dosyasını projeye ekle.</li>
   <li>Bağımlılıkları yükle:<br>
-    Swift Package Manager üzerinden gerekli Firebase paketlerini ekle.
+    Swift Package Manager üzerinden gerekli Firebase, JGProgressHud ve SDWebİmage paketlerini ekle.
   </li><br>
   <li>Xcode’da projeyi aç ve çalıştır 🚀</li>
 </ol>
