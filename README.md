@@ -110,7 +110,7 @@ ChatLy
     <pre>git clone https://github.com/Mahmutakin99/ChatLy.git</pre>
   </li>
   <li>Firebase projesi oluştur ve <code>GoogleService-Info.plist</code> dosyasını projeye ekle.</li>
-  <li>Bağımlılıkları yükle:
+  <li>Bağımlılıkları yükle:<br>
     Swift Package Manager üzerinden gerekli Firebase paketlerini ekle.
   </li><br>
   <li>Xcode’da projeyi aç ve çalıştır 🚀</li>
